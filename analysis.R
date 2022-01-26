@@ -6,7 +6,7 @@ with_counts = ccf_reporter %>%
   group_by(event_name, hostname) %>% 
   filter(hostname == 'hubmapconsortium.github.io', event_name!='webpage') %>% 
   tally() 
-with_counts
+with_counts 
 
 ggplot(with_counts, aes(x=event_name, y=n, fill=hostname))+
   geom_bar(stat='identity', position = 'dodge')+
