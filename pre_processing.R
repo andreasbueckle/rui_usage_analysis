@@ -1,9 +1,8 @@
 library(tidyverse)
-library(png)
 
 
-filename_rui = "Google-Analytics-Data/bq-results-20211005-141242-dwiyrbrbeytu.csv"
-raw = read_csv(filename_rui)
+filename = "Google-Analytics-Data/bq-results-20220126-160011-x8zuz1raqoc.csv"
+raw = read_csv(filename)
 
 # split mouse position string intoacross multiple columns
 
@@ -18,18 +17,4 @@ with_adjusted_types$event_category[is.na(with_adjusted_types$event_category)] = 
 with_adjusted_types$event_label[is.na(with_adjusted_types$event_label)] = ""
 with_adjusted_types
 
-ggplot(with_adjusted_types, aes(x=event_date, y=hostname))+
-  geom_bar(stat='identity')
-
-rui_all = with_adjusted_types
-
-rui_ingest = with_adjusted_types %>% 
-  filter(hostname=='ingest.hubmapconsortium.org')
-rui_ingest
-
-rui_standalone = with_adjusted_types %>% 
-  filter(hostname=='hubmapconsortium.github.io')
-rui_standalone
-
-eui = with_adjusted_types %>% 
-  filter(hostname=='hubmapconsortium.github.io')
+ccf_reporter = with_adjusted_types
